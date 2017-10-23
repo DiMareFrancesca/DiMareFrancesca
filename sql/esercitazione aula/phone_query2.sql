@@ -27,7 +27,7 @@ group by o.description;
 select count(s.id), c.name as country
 from smartphone as s inner join brand as b
 on s.brand=b.id
-inner join country as c
+inner join country as cusersmartphoneopsysbrandidsmartphone
 on b.country=c.code
 group by c.name;
 
