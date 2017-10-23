@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+  ~ [y] hybris Platform
+  ~ 
+  ~ Copyright (c) 2000-2016 SAP SE
+  ~ All rights reserved.
+  ~ 
+  ~ This software is the confidential and proprietary information of SAP 
+  ~ Hybris ("Confidential Information"). You shall not disclose such 
+  ~ Confidential Information and shall use it only in accordance with the 
+  ~ terms of the license agreement you entered into with SAP Hybris.
+  -->
+<!--
+	ATTENTION: This is just an example file. You have to edit it according to your needs.
+-->
+
+<items 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+			xsi:noNamespaceSchemaLocation="items.xsd">
+<relations>
+  <relation code="Author2RecipeRelation" generate="true" autocreate="true" localized="false">
+ <sourceElement qualifier="Author" type="author" cardinality="one"/>
+<targetElement qualifier="Recipe " type="recipes" cardinality="many"/>
+</relation> 
+
+<relation code="Recipe2CategoryRelation" generate="true" autocreate="true" localized="false">
+  <sourceElement qualifier="Category" type="category" cardinality="one"/>
+ <targetElement qualifier="Recipe " type="recipes" cardinality="many"/>
+ </relation>
+ 
+ <relation code="Recipe2Ingredient" generate="true" autocreate="true" localized="false">
+  <deployment table="Recipe" typecode="12566"/>
+<sourceElement qualifier="Recipe" type="recipes" cardinality="many"/>
+<targetElement qualifier="Ingredient " type="ingredient" cardinality="many"/>
+</relation>
+
+<relation code="Recipe2ToolRelation" generate="true" autocreate="true" localized="false">
+  <deployment table="Recipe" typecode="12540"/>
+<sourceElement qualifier="Recipe" type="recipes" cardinality="many"/>
+<targetElement qualifier="Tool " type="tools" cardinality="many"/>
+</relation>
+
+
+
+</relations>
+
+	<itemtypes>
+	<itemtype code="Recipe" autocreate="true" generate="true">
+	<description>recipe</description>
+	<attributes>
+	<attribute qualifier="id" type="java.Lang.Integer" >
+	<description> id</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+	
+	<attribute qualifier="name" type="java.Lang.String" >
+	<description> name</description>
+	<modifiers optional="true" />
+	<persistence type="property" />
+	</attribute>
+	
+	
+	<attribute qualifier="time" type="java.Lang.Integer" >
+	<description> time</description>
+	<modifiers optional="true" />
+	<persistence type="property" />
+	</attribute>
+    </attributes>
+	</itemtype>
+	
+	<itemtype code="Category" autocreate="true" generate="true">
+	<description>category</description>
+	<attributes>
+	<attribute qualifier="id" type="java.Lang.Integer" >
+	<description> id</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+	
+	<attribute qualifier="type" type="java.Lang.String" >
+	<description> type</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+	</attributes>
+	</itemtype>
+	
+	<itemtype code="Ingredient" autocreate="true" generate="true">
+	<description>ingredient</description>
+	
+	<attributes>
+	<attribute qualifier="id" type="java.Lang.Integer" >
+	<description> id</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+	
+	<attribute qualifier="name" type="java.Lang.String" >
+	<description> name</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+	</attributes>
+	</itemtype>
+	
+	<itemtype code="Author" autocreate="true" generate="true">
+	<description>Author of recipe</description>
+	
+	<attributes>
+	<attribute qualifier="id" type="java.Lang.Integer" >
+	<description> id</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+
+	<attribute qualifier="name" type="java.Lang.String" >
+	<description> name of author</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+	
+	<attribute qualifier="surname" type="java.Lang.String" >
+	<description> surname of author</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+	</attributes>
+	</itemtype>
+	
+	<itemtype code="Tool" autocreate="true" generate="true">
+	<description>tool for recipe</description>
+	
+	<attributes>
+	<attribute qualifier="id" type="java.Lang.Integer" >
+	<description> id</description>
+	<modifiers optional="false" />
+	<persistence type="property" />
+	</attribute>
+	
+	<attribute qualifier="name" type="java.Lang.String" >
+	<description> id</description>
+	<modifiers optional="true" />
+	<persistence type="property" />
+	</attribute>
+	</attributes>
+	</itemtype>
+	
+	
+	
+	<itemtype code="Recipe2Ingredient" autocreate="true" generate="true">
+	<description> use tool for recipe</description>
+	<attributes>
+	<attribute autocreate ="true" qualifier="aumont" type="java.Lang.Integer" >
+	<modifiers read="true" write=" true" search="true" optional="true" />
+	<persistence type="property" />
+	</attribute>
+	</attributes>
+	<indexes>
+	<index name= "id" unique="true">
+	<key attribute="source"/>
+	<key attribute="source" />
+	</index>
+	</indexes>
+	</itemtype>
+	 </itemtypes>
+</items>
