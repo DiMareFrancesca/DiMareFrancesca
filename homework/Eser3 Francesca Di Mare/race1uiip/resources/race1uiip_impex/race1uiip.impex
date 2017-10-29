@@ -1,0 +1,50 @@
+
+INSERT_UPDATE Cyclist; id[unique=true]; name;               stageRaced;   stage(id);                 stageRanking(id)
+                       ;1;              Vincenzo Nibali;      1;                  1;                          2
+                       ;2;               Enrico Gasparotto;   1;                  1;                          1
+                       ;3;               Luka Pibernik;       1;                  2;                          3
+                       ;4;               William Bonnet;      1;                  3;                          6
+                       ;5;               Enrico Battaglin;    1;                  5;                          9
+                       ;6;               Mikel Landa;         1;                  3;                          4
+                       ;7;               André Greipel;       1;                  2;                          5
+                       ;8;               Tom Dumoulin;        1;                  5;                          7
+                       ;9;               Stefano Pirazzi;     1;                  19;                         8
+                       ;10;              Simone Andretta;     1;                  15;                        10     
+
+INSERT_UPDATE StageRace; id[unique=true]; name; numberStage
+                         ;1;        giroItalia2017; 21;
+                                                         
+ INSERT_UPDATE Stage; id[unique=true]; name;         stageLength;         stageRace(id); date[dateformat='dd/MM/yyyy']    
+                      ;1;             ;Alghero-Olbia; 206km;                    1             22/05/2017             
+                      ;2;             ;Olbia-Tortoli; 221km;                    1             24/05/2017               
+                      ;3;             ;Tortoli-Cagliari;148km;                  1             26/05/2017               
+                      ;4;             ;Cefalu-Etna; 181km;                      1             28/05/2017              
+                      ;5;             ;Pedara_messina; 159km;                   1             29/05/2017                
+                      ;6;             ;Reggiocalabria_termeLuigiane; 127Km;     1             30/05/2017                 
+                      ;7;             ;Castrovillari-Alberobello; 224km;        1             1/06/2017                 
+                      ;8;             ;Molfetta-Peschici;189km;                 1             2/05/2017                 
+                      ;9;             ;Montenegro-BlocHaus; 149Km;              1             3/06/2017                 
+                      :10;            ;Sagrantino-montefalco; 149km;            1             4/06/2017      
+                      ;11;            ;Firenze-BagnoDiRomagna;166km;            1             6/06/2017           
+                      ;12;            ;Forli-ReggioEmilia;234km;                1             7/07/2017              
+                      ;13,            ;ReggioEmilia-Tortona;167km;              1             10/06/2017                 
+                      ;14;            ;Castellania-Oropia;131km;                1             12/06/2017              
+                      ;15;            ;Valdengo-Bergamo;199km;                  1             13/06/2017               
+                      ;16;            ;Rovetta-Bormio;222km;                    1             14/06/2017                
+                      ;17;            ;Tirano-canazei,221km;                    1             15/06/2017               
+                      ;18;            ;Moena-Ortisei,219km;                     1             18/06/2017             
+                      ;19;            ;Sancandido-Piancavallo;191km;            1             20/06/2017              
+                      ;20;            ;Pordenone-Asiago;190km;                  1             21/06/2017    
+                      ;21;            ;Monza-Milano;293km;                      1             22/06/2017    
+                      
+
+                       
+INSERT_UPDATE StageRanking; id[unique=true];   time;           position   
+                            ;1;               130 min e 50s ;        1
+                            ;2;               233 min 20s ;          6
+                            ;3;               144 min 21s" ;         2 
+                            ;4;               170 min 35s ;          3
+                            ;5;               180 min 0 s ;          4
+                            ;6 ;              226 min 15s;           5
+                            ;7;               280 min 32s ;          9
+                            ;8 ;               205 min 14s;          8                                                                    
