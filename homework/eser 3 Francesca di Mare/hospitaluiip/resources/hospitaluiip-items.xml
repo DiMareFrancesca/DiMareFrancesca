@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="items.xsd">
+
+	<!-- enumtype per gli attributi gender dell'itemtype Patient e per l'attributo 
+		result dell'itemtype Appointment -->
+	<enumtypes>
+		<enumtype code="genderEnum" autocreate="true" generate="true"
+			dynamic="true">
+			<value code="FEMALE" />
+			<value code="MALE" />
+		</enumtype>
+		<enumtype code="resultEnum" autocreate="true" generate="true"
+			dynamic="true">
+			<value code="POSITIVE" />
+			<value code="NEGATIVE" />
+		</enumtype>
+	</enumtypes>
+
+
+	<relations>
+	
+	<!-- relazione 1-n tra Ward e Patient -->
+	<relation localized="false" code="Ward2PatientRelation">
+		<sourceElement type="Ward" qualifier="ward"
+			cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="Patient" qualifier="patients"
+			cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	<!-- relazione 1-n tra Ward e Doctor -->
+	<relation localized="false" code="Ward2DoctorRelation">
+		<sourceElement type="Ward" qualifier="ward"
+			cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="doctor" qualifier="doctors"
+			cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	<!-- relazione 1-n tra Doctor e Patient -->
+	<relation localized="false" code="Doctor2PatientRelation">
+		<sourceElement type="Doctor" qualifier="doctor"
+			cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="Patient" qualifier="patients"
+			cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	<!-- relazione 1-n tra Doctor e Appointment -->
+	<relation localized="false" code="Doctor2AppointmentRelation">
+		<sourceElement type="Doctor" qualifier="doctor"
+			cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="Appointment" qualifier="appointments"
+			cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+	
+	<!-- relazione 1-n tra Patient e Appointment -->
+	<relation localized="false" code="Patient2AppointmentRelation">
+		<sourceElement type="Patient" qualifier="patient"
+			cardinality="one">
+			<modifiers optional="true" />
+		</sourceElement>
+		<targetElement type="Appointment" qualifier="appointments"
+			cardinality="many">
+			<modifiers optional="true" />
+		</targetElement>
+	</relation>
+
+	</relations>
+
+	<itemtypes>
+		<itemtype code="Ward" autocreate="true" generate="true">
+			<deployment table="Ward" typecode="13691" />
+			<attributes>
+				<attribute qualifier="id" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+<itemtype code="Person" autocreate="true" generate="true">
+			<deployment table="Person" typecode="15621" />
+			<attributes>
+			<attribute qualifier="id" type="java.lang.String">
+					<modifiers optional="false" unique="true" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="name" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="surname" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="codFisc" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="birthDate" type="java.util.Date">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="placeDate" type="java.util.Date">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="gender" type="genderEnum">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				</attributes>
+				</itemtype>
+				
+		<itemtype code="Patient" extends="Person" autocreate="true" generate="true">
+			<deployment table="Patient" typecode="13692" />
+			<attributes>
+				
+				<attribute qualifier="dateIn" type="java.util.Date">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="dateOut" type="java.util.Date">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="totDays" type="java.lang.Integer">
+					<modifiers optional="true" unique="false" />
+					<persistence type="dynamic" attributeHandler="totDaysBeanId">
+					</persistence>
+				</attribute>
+				<attribute qualifier="doctor" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="ward" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="appointment" type="java.lang.string">
+				<modifiers optional="true" unique="false" />
+				<persistence type="property">
+				</persistence>
+			</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Doctor"  extends="Person" autocreate="true" generate="true">
+			<deployment table="Doctor" typecode="13693" />
+			<attributes>
+			<attribute qualifier="alboNumber" type="java.lang.Integer">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+				<attribute qualifier="ward" type="java.lang.String">
+					<modifiers optional="true" unique="false" />
+					<persistence type="property">
+					</persistence>
+				</attribute>
+			</attributes>
+		</itemtype>
+
+		<itemtype code="Appointment" autocreate="true" generate="true">
+			<deployment table="Doctor" typecode="13694" />
+			<attributes>
+			<attribute qualifier="id" type="java.lang.String">
+				<modifiers optional="false" unique="true" />
+				<persistence type="property">
+				</persistence>
+			</attribute>
+			<attribute qualifier="date" type="java.util.Date">
+				<modifiers optional="true" unique="false" />
+				<persistence type="property">
+				</persistence>
+			</attribute>
+			<attribute qualifier="result" type="resultEnum">
+				<modifiers optional="true" unique="false" />
+				<persistence type="property">
+				</persistence>
+			</attribute>
+			<attribute qualifier="doctor" type="java.lang.String">
+				<modifiers optional="true" unique="false" />
+				<persistence type="property">
+				</persistence>
+			</attribute>
+		</attributes>
+		</itemtype>
+
+
+
+	</itemtypes>
+</items>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ [y] hybris Platform
+  ~ 
+  ~ Copyright (c) 2000-2016 SAP SE
+  ~ All rights reserved.
+  ~ 
+  ~ This software is the confidential and proprietary information of SAP 
+  ~ Hybris ("Confidential Information"). You shall not disclose such 
+  ~ Confidential Information and shall use it only in accordance with the 
+  ~ terms of the license agreement you entered into with SAP Hybris.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+	<bean id="hospitaluiipSystemSetup" class="my.hospitaluiip.setup.HospitaluiipSystemSetup">
+		<!-- constructor arg injection example -->
+		<constructor-arg ref="hospitaluiipService" />
+	</bean>
+
+	<bean id="hospitaluiipService" class="my.hospitaluiip.service.impl.DefaultHospitaluiipService">
+		<!-- setter injection example -->
+		<property name="modelService" ref="modelService" />
+		<property name="mediaService" ref="mediaService" />
+		<property name="flexibleSearchService" ref="flexibleSearchService" />
+	</bean>
+	
+	<bean id="totDaysHandler" class="my.hospitaluiip.handler.impl.TotDaysHandler"/>
+
+	  <bean id="PatientDao" class="my.hospitaluiip.appointmentDao.impl.DefaultAppointmentDao"
+		parent="abstractItemDao" />
+
+
+<bean id= "defaultPatientService" class="my.hospitaluiip.appointment.service.impl.DefaultAppointmentService">
+		<property name="appointmentDao" ref="defaultAppointmentDao"/>
+	</bean>
+	<!--  bean dell'interceptor -->
+	<bean id="myPrepareInterceptor" class="my.hospitaluiip.interceptor.impl.MyPrepareInterceptor">
+		<property name="appointmentService" ref="defaultAppointmentService"/>
+	</bean>
+	<bean id="myStagePrepareMapping"
+		class="my.hospitaluiip.interceptor.impl.MyPrepareInterceptor">
+		<property name="interceptor" ref="myPrepareInterceptor"></property>
+		<property name="typeCode" value="Appointment"></property>
+	</bean>
+	
+ 
+ </beans>
